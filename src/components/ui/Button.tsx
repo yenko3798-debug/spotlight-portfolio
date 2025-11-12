@@ -1,25 +1,31 @@
-'use client';
-import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import clsx from 'clsx';
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'ghost' | 'soft';
-  asChild?: boolean;
-};
+const styles = cva(
+  'inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none ring-1',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-emerald-400 text-slate-900 ring-emerald-300 hover:bg-emerald-300 active:bg-emerald-400',
+        secondary:'bg-slate-900/70 text-slate-100 ring-slate-700 hover:bg-slate-800',
+        ghost: 'bg-transparent text-emerald-300 ring-transparent hover:bg-emerald-300/10',
+      },
+      size: { sm: 'px-3 py-1.5 text-xs', md: 'px-4 py-2', lg: 'px-5 py-3 text-base' },
+    },
+    defaultVariants: { variant: 'primary', size: 'md' },
+  }
+);
 
-export default function Button({ className='', variant='primary', ...props }: Props) {
-  const styles = {
-    primary:
-      'bg-emerald-500 text-slate-900 hover:bg-emerald-400 shadow-xl shadow-emerald-500/20',
-    ghost:
-      'bg-transparent text-emerald-300 ring-1 ring-emerald-400/30 hover:bg-emerald-500/10',
-    soft:
-      'bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30 hover:bg-emerald-500/25'
-  }[variant];
+type Props = VariantProps<typeof styles> & React.ComponentProps<'button'> & { href?: string };
 
+export default function Button({ variant, size, className, href, ...props }: Props) {
+  const cn = clsx(styles({ variant, size }), className);
+  if (href) return (
+    <Link href={href} className={cn}>{props.children}</Link>
+  );
   return (
-    <button
-      {...props}
-      className={`rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-400/50 ${styles} ${className}`}
-    />
+    <motion.button whileTap={{ scale: 0.98 }} className={cn} {...props} />
   );
 }

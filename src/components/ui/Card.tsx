@@ -1,9 +1,13 @@
-import React from 'react';
+import clsx from 'clsx';
 
-export default function Card({ className='', children }:{className?:string, children: React.ReactNode}) {
+export default function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div className={`rounded-3xl border border-emerald-400/20 bg-slate-950/75 p-5 shadow-xl shadow-emerald-500/10 backdrop-blur ${className}`}>
-      {children}
-    </div>
+    <div
+      className={clsx(
+        'rounded-3xl border border-slate-800/80 bg-slate-950/80 p-4 shadow-[0_10px_40px_-15px_rgba(16,185,129,.25)]',
+        className
+      )}
+      {...props}
+    />
   );
 }
