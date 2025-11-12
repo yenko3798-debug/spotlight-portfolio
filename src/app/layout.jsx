@@ -7,10 +7,10 @@ export const metadata = {
   title: {
     template: '%s - @Foe',
     default:
-      'Yenko | @Foe | @n2 - Software designer, Roblox systems developer',
+      'Amr Okasha, Spanish Project',
   },
   description:
-    'I’m Yenko, a software designer based in the USA.',
+    'Amrw Okasha, Spanish Project',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
