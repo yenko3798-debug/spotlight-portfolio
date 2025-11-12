@@ -1,10 +1,1 @@
-﻿# build & cache
-.next
-node_modules
-*.log
-
-# dev runtime data (file-backed store)
-data/*.json
-
-# env
-.env
+﻿node_modules

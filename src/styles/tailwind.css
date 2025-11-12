@@ -58,3 +58,6 @@
     background-position: 120% 0;
   }
 }
+/* globals.css or tailwind.css */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
